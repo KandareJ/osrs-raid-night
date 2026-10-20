@@ -9,7 +9,12 @@ language = "en"
 command = "mdbook-admonish"
 assets_version = "3.1.0" # do not edit: managed by `mdbook-admonish install`
 
+[preprocessor.tabs]
+
 [output]
 
 [output.html]
-additional-css = ["./mdbook-admonish.css"]
+default-theme = "fractured-archive"
+preferred-dark-theme = "fractured-archive"
+additional-css = ["./mdbook-admonish.css", "./theme/tabs.css", "./theme/osrs.css", "./theme/fractured-archive.css"]
+additional-js = ["./theme/tabs.js"]
