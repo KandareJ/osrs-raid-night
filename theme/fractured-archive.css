@@ -1,0 +1,79 @@
+/* Fractured Archive theme, coloured after its login screen: mossy green
+   stone panels with black outlines, the game's yellow/white text, and
+   toxic green glow accents. Registered in the theme menu via index.hbs. */
+.fractured-archive {
+    --bg: #1f2619;
+    --fg: #e6ecd8;
+
+    --sidebar-bg: #2e3a24;
+    --sidebar-fg: #cfd8bc;
+    --sidebar-non-existant: #6b7a58;
+    --sidebar-active: #7cff3a;
+    --sidebar-spacer: #0d110a;
+
+    --scrollbar: #46563a;
+
+    --icons: #8fa274;
+    --icons-hover: #ffff00;
+
+    --links: #8ee03c;
+
+    --inline-code-color: #ffff00;
+
+    --theme-popup-bg: #2e3a24;
+    --theme-popup-border: #0d110a;
+    --theme-hover: #3a4a2e;
+
+    --quote-bg: #2a3421;
+    --quote-border: #0d110a;
+
+    --warning-border: #ffff00;
+
+    --table-border-color: #0d110a;
+    --table-header-bg: #3a4a2e;
+    --table-alternate-bg: #263020;
+
+    --searchbar-border-color: #0d110a;
+    --searchbar-bg: #e6ecd8;
+    --searchbar-fg: #1f2619;
+    --searchbar-shadow-color: #0d110a;
+    --searchresults-header-fg: #8fa274;
+    --searchresults-border-color: #46563a;
+    --searchresults-li-bg: #2a3421;
+    --search-mark-bg: #4d7a1f;
+
+    --color-scheme: dark;
+}
+
+.fractured-archive .content h1,
+.fractured-archive .content h2,
+.fractured-archive .content h3 {
+    color: #ffff00;
+}
+
+.fractured-archive .content h1 {
+    border-bottom: 2px solid #0d110a;
+    padding-bottom: 0.3em;
+}
+
+.fractured-archive .content a:hover {
+    color: #7cff3a;
+}
+
+/* book.js uses the light code highlighting for unknown themes */
+.fractured-archive pre,
+.fractured-archive .hljs {
+    background: #161c12;
+    color: #e6ecd8;
+}
+
+.fractured-archive .mdbook-tab {
+    color: var(--fg);
+    border: 2px solid #0d110a;
+    border-bottom: none;
+}
+
+.fractured-archive .mdbook-tab.active {
+    color: #ffff00;
+    box-shadow: inset 0 3px 0 #7cff3a;
+}

@@ -1,0 +1,339 @@
+<!DOCTYPE HTML>
+<html lang="en" class="fractured-archive" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Raid Night</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="./mdbook-admonish.css">
+        <link rel="stylesheet" href="./theme/tabs.css">
+        <link rel="stylesheet" href="./theme/osrs.css">
+        <link rel="stylesheet" href="./theme/fractured-archive.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "fractured-archive" : "fractured-archive";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            // Forget saved choices of themes that no longer exist, since
+            // book.js breaks when the theme has no button in the menu.
+            if (theme !== null && theme !== undefined && ['fractured-archive', 'osrs', 'rust'].indexOf(theme) === -1) {
+                try { localStorage.removeItem('mdbook-theme'); } catch(e) { }
+                theme = null;
+            }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('fractured-archive')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="landing.html"><strong aria-hidden="true">1.</strong> Home</a></li><li class="chapter-item expanded "><a href="raids/the-fractured-archive.html"><strong aria-hidden="true">2.</strong> The Fractured Archive</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="fractured-archive">Fractured Archive</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="osrs">OSRS</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Raid Night</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="raid-night"><a class="header" href="#raid-night">Raid Night</a></h1>
+<p>Collection of resources for OSRS raids.</p>
+<h2 id="raids"><a class="header" href="#raids">Raids</a></h2>
+<ul>
+<li><a href="./raids/the-fractured-archive.html">The Fractured Archive</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-fractured-archive"><a class="header" href="#the-fractured-archive">The Fractured Archive</a></h1>
+<h3 id="boss-1-archive-guardian"><a class="header" href="#boss-1-archive-guardian">Boss 1: Archive Guardian</a></h3>
+<h4 id="gear"><a class="header" href="#gear">Gear:</a></h4>
+<ul>
+<li>Serp or anti-venom for mushrooms</li>
+<li>T-bow/bowfa for ranging</li>
+<li>Crush weapon swap for melee phase</li>
+</ul>
+<h4 id="mechanics"><a class="header" href="#mechanics">Mechanics:</a></h4>
+<ul>
+<li>Pop shrooms by stepping within 1 tile for 1 tick and then moving away 2 tiles (maybe 1 tile?)</li>
+<li>Boss targets a single player. That player should pray range. Other players should stand to the left and right of where the boss is facing to not take damage. Standing behind the boss takes melee damage.</li>
+<li>Once boss' shield is down, he slams down. Stand 2 tiles away and spam click to attack him once he falls down. If you are 1 tile away you take damage.</li>
+<li>Rotate clockwise as a team while damaging the boss to avoid tentacles</li>
+<li>Once boss health is low enough, it enrages and shoots death beams.</li>
+<li>Pray mage to reduce death beam damage.</li>
+<li>Destroying the torches damages the boss. The death beams one shot the torches.</li>
+</ul>
+<h3 id="boss-2"><a class="header" href="#boss-2">Boss 2:</a></h3>
+<div class="mdbook-tabs-container">
+<nav class="mdbook-tabs">
+<button class="mdbook-tab active" data-tabname="Bork and Smorks">Bork and Smorks</button>
+<button class="mdbook-tab" data-tabname="Ezekiel">Ezekiel</button>
+</nav>
+<div class="mdbook-tab-content" data-tabname="Bork and Smorks">
+<h4 id="gear-1"><a class="header" href="#gear-1">Gear:</a></h4>
+<ul>
+<li>Bludgeon for melee/crush</li>
+<li>ACB/blow pipe for range</li>
+</ul>
+<h4 id="mechanics-1"><a class="header" href="#mechanics-1">Mechanics:</a></h4>
+<ul>
+<li>One player is targeted by Bork and the other by Snorks.</li>
+<li>Kill Bork first, and then Snorks will attack similar to Zebak's enrage.</li>
+<li>Stun Bork by hitting him with the big cannon from the Snorks.</li>
+<li>Snorks attack with two patterns:
+<ol>
+<li>Auto-Auto-Fire-Auto-Cannon</li>
+<li>Auto-Auto-Auto-Fire-Auto-Auto-Cannon</li>
+</ol>
+</li>
+<li>Firey gloop leaves gloop on ground that causes burn damage. Player targeted by Snorks should aim this away from the center.</li>
+</ul>
+</div>
+<div class="mdbook-tab-content hidden" data-tabname="Ezekiel">
+<h4 id="gear-2"><a class="header" href="#gear-2">Gear:</a></h4>
+<p>Unknown</p>
+<h4 id="mechanics-2"><a class="header" href="#mechanics-2">Mechanics:</a></h4>
+<p>Unknown</p>
+</div>
+</div>
+<h3 id="boss-3"><a class="header" href="#boss-3">Boss 3:</a></h3>
+<div class="mdbook-tabs-container">
+<nav class="mdbook-tabs">
+<button class="mdbook-tab active" data-tabname="Dreadnoth the Jellied">Dreadnoth the Jellied</button>
+<button class="mdbook-tab" data-tabname="Moia">Moia</button>
+</nav>
+<div class="mdbook-tab-content" data-tabname="Dreadnoth the Jellied">
+<h4 id="gear-3"><a class="header" href="#gear-3">Gear:</a></h4>
+<ul>
+<li>Demon - try using T-Bow and Scorching Bow</li>
+</ul>
+<h4 id="mechanics-3"><a class="header" href="#mechanics-3">Mechanics:</a></h4>
+<ul>
+<li>Slams do melee damage. The objects that shoot off after a slam do range</li>
+<li>Jellies do melee damage. If not killed they will heal the boss when he jumps on theme.</li>
+<li>Jellies can be blood barraged for free heals</li>
+<li>On death jellies drop blood splats that cause bleed damage. Try and stack them to keep the ground clear</li>
+</ul>
+</div>
+<div class="mdbook-tab-content hidden" data-tabname="Moia">
+<h4 id="gear-4"><a class="header" href="#gear-4">Gear:</a></h4>
+<p>Unknown</p>
+<h4 id="mechanics-4"><a class="header" href="#mechanics-4">Mechanics:</a></h4>
+<p>Unknown</p>
+</div>
+</div>
+<h3 id="boss-4"><a class="header" href="#boss-4">Boss 4:</a></h3>
+<div class="mdbook-tabs-container">
+<nav class="mdbook-tabs">
+<button class="mdbook-tab active" data-tabname="Xarth">Xarth</button>
+<button class="mdbook-tab" data-tabname="Dagon'hai Elder">Dagon'hai Elder</button>
+</nav>
+<div class="mdbook-tab-content" data-tabname="Xarth">
+<h4 id="gear-5"><a class="header" href="#gear-5">Gear:</a></h4>
+<ul>
+<li>Scorching Bow/Twisted Bow</li>
+</ul>
+<h4 id="mechanics-5"><a class="header" href="#mechanics-5">Mechanics:</a></h4>
+<p>Unknown</p>
+</div>
+<div class="mdbook-tab-content hidden" data-tabname="Dagon'hai Elder">
+<h4 id="gear-6"><a class="header" href="#gear-6">Gear:</a></h4>
+<p>Unknown</p>
+<h4 id="mechanics-6"><a class="header" href="#mechanics-6">Mechanics:</a></h4>
+<p>Unknown</p>
+</div>
+</div>
+<h3 id="boss-5-ocellus"><a class="header" href="#boss-5-ocellus">Boss 5: Ocellus</a></h3>
+<h4 id="gear-7"><a class="header" href="#gear-7">Gear:</a></h4>
+<p>Unknown</p>
+<h4 id="mechanics-7"><a class="header" href="#mechanics-7">Mechanics:</a></h4>
+<p>Unknown</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="./theme/tabs.js"></script>
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>

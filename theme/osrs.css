@@ -1,0 +1,73 @@
+/* OSRS theme: dark interface browns, parchment text, and the game's
+   yellow/orange text colours. Registered in the theme menu via index.hbs. */
+.osrs {
+    --bg: #2b2620;
+    --fg: #e2dbc8;
+
+    --sidebar-bg: #3e3529;
+    --sidebar-fg: #d6cbb0;
+    --sidebar-non-existant: #6f6352;
+    --sidebar-active: #ff981f;
+    --sidebar-spacer: #5a4d3c;
+
+    --scrollbar: var(--sidebar-fg);
+
+    --icons: #a8996f;
+    --icons-hover: #ffff00;
+
+    --links: #ff981f;
+
+    --inline-code-color: #ffff00;
+
+    --theme-popup-bg: #3e3529;
+    --theme-popup-border: #5a4d3c;
+    --theme-hover: #4f4434;
+
+    --quote-bg: #352e25;
+    --quote-border: #5a4d3c;
+
+    --warning-border: #ff981f;
+
+    --table-border-color: #5a4d3c;
+    --table-header-bg: #4f4434;
+    --table-alternate-bg: #352e25;
+
+    --searchbar-border-color: #5a4d3c;
+    --searchbar-bg: #e2dbc8;
+    --searchbar-fg: #2b2620;
+    --searchbar-shadow-color: #5a4d3c;
+    --searchresults-header-fg: #a8996f;
+    --searchresults-border-color: #5a4d3c;
+    --searchresults-li-bg: #352e25;
+    --search-mark-bg: #8a5a12;
+
+    --color-scheme: dark;
+}
+
+.osrs .content h1,
+.osrs .content h2,
+.osrs .content h3 {
+    color: #ffff00;
+}
+
+.osrs .content h1 {
+    border-bottom: 2px solid #5a4d3c;
+    padding-bottom: 0.3em;
+}
+
+/* book.js uses the light code highlighting for unknown themes */
+.osrs pre,
+.osrs .hljs {
+    background: #1f1b16;
+    color: #e2dbc8;
+}
+
+.osrs .mdbook-tab {
+    color: var(--fg);
+    border-top: 2px solid transparent;
+}
+
+.osrs .mdbook-tab.active {
+    color: #ffff00;
+    border-top-color: #ff981f;
+}
